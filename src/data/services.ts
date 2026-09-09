@@ -13,29 +13,29 @@ export const materials: Material[] = [
   {
     id: 'pla',
     name: 'PLA',
-    short: 'Polylactic acid',
+    short: '',
     blurb:
       'The everyday workhorse. Crisp detail, a huge colour range and the cheapest way to get a great looking part on your desk.',
     strengths: ['Sharpest surface detail', 'Widest colour range', 'Lowest cost per kilo', 'Rigid and dimensionally stable'],
     bestFor: ['Display models & figurines', 'Prototypes and fit checks', 'Board game inserts', 'Signage and props'],
-    notes: 'Softens above roughly 55 °C, so keep PLA parts out of a parked car over a Sydney summer.',
+    notes: 'Softens above roughly 55 °C, so not suitable for hot environments or prolonged outdoor use.',
     colour: '#b45309',
   },
   {
     id: 'petg',
     name: 'PETG',
-    short: 'Glycol-modified PET',
+    short: '',
     blurb:
       'Tougher and more heat tolerant than PLA with a slight gloss. The default choice for parts that actually have to do a job.',
-    strengths: ['Impact resistant', 'Handles ~75 °C', 'UV and moisture tolerant', 'Food-safe grades available'],
+    strengths: ['Impact resistant', 'Handles ~70 °C', 'UV and moisture tolerant', 'More durable than PLA'],
     bestFor: ['Functional brackets & mounts', 'Outdoor fixtures', 'Enclosures and housings', 'Replacement parts'],
-    notes: 'Layer lines are slightly more visible than PLA — worth it for the durability.',
+    notes: 'Layer lines are slightly more visible than PLA but worth it for the durability.',
     colour: '#0f766e',
   },
   {
     id: 'tpu',
     name: 'TPU',
-    short: 'Thermoplastic polyurethane',
+    short: '',
     blurb:
       'Flexible rubber-like filament. Bends, squashes and springs back without cracking, printed in a range of shore hardnesses.',
     strengths: ['Genuinely flexible', 'Excellent abrasion resistance', 'Great vibration damping', 'Tear resistant'],
@@ -119,11 +119,11 @@ export const services: Service[] = [
 export const processSteps = [
   {
     title: 'Send your files',
-    body: 'Upload your STL, 3MF, STEP or OBJ files — or just describe what you need and we will model it for you.',
+    body: 'Upload your STL, 3MF, STEP or OBJ files. Or just describe what you need and we will model it for you.',
   },
   {
     title: 'Get a quote',
-    body: 'We check the model, confirm material and colour, and come back with a fixed price and lead time. Usually within one business day.',
+    body: 'We check the model, confirm material and colour, and come back with a fixed price and lead time. Usually within 1-2 business days.',
   },
   {
     title: 'We print it',
@@ -138,7 +138,7 @@ export const processSteps = [
 export const faqs = [
   {
     q: 'How much will my print cost?',
-    a: 'Pricing starts at $30 AUD per kilogram of filament plus shipping. Most desk-sized prints use well under 100 g, so the material cost on a typical part is only a few dollars — the rest of the quote covers machine time, finishing and packaging. Send your files through the enquiry form for an exact price.',
+    a: 'Pricing starts at $30 AUD per kilogram of filament plus shipping. Most desk-sized prints use well under 100 g, so the material cost on a typical part is only a few dollars — the rest of the quote covers packaging and shipping costs. Send your files through the enquiry form for an exact price.',
   },
   {
     q: 'What files do you accept?',
@@ -146,7 +146,7 @@ export const faqs = [
   },
   {
     q: 'How big can you print?',
-    a: 'Up to 256 × 256 × 256 mm in a single piece. Larger models are printed in sections for you to join yourself — ask and we will tell you how the part would need to be split.',
+    a: 'Up to 256 × 256 × 256 mm in a single piece. Larger models are printed in sections for you to join yourself. Ask and we will tell you how the part would need to be split.',
   },
   {
     q: 'How long does it take?',

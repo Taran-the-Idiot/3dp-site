@@ -23,13 +23,7 @@ const categories = ['All', ...new Set(prints.map((p) => p.category))];
 
   <section class="gallery">
     <div class="shell">
-      <div class="filters" role="group" aria-label="Filter prints by category">
-        {categories.map((c, i) => (
-          <button class={`filter${i === 0 ? ' is-active' : ''}`} data-filter={c} aria-pressed={i === 0 ? 'true' : 'false'}>
-            {c}
-          </button>
-        ))}
-      </div>
+      
 
       <ul class="collage" data-grid>
         {prints.map((p) => (
