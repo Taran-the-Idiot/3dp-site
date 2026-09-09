@@ -102,16 +102,15 @@ export const services: Service[] = [
   },
   {
     id: 'finishing',
-    title: 'Finishing & assembly',
+    title: 'Finishing',
     summary:
-      'Support removal, sanding, threaded inserts and multi-part assembly so the part arrives ready to use.',
+      'Support removal, sanding and threaded inserts so the part arrives ready to use.',
     detail:
-      'Every print has its supports removed and is inspected before it ships. Beyond that, we can sand, smooth, install heat-set threaded inserts, glue multi-part models together and pack things properly for the trip.',
+      'Every print has its supports removed and is inspected before it ships. Beyond that, we can sand, smooth, install heat-set threaded inserts and pack things properly for the trip.',
     points: [
       'Support removal and inspection on every order',
       'Sanding and smoothing on request',
       'Heat-set threaded inserts and hardware fitting',
-      'Multi-part bonding for models larger than the build plate',
     ],
     icon: 'wrench',
   },
@@ -147,7 +146,7 @@ export const faqs = [
   },
   {
     q: 'How big can you print?',
-    a: 'Up to 256 × 256 × 256 mm in a single piece. Anything larger is split into sections and bonded, which is usually invisible on the finished part.',
+    a: 'Up to 256 × 256 × 256 mm in a single piece. Larger models are printed in sections for you to join yourself — ask and we will tell you how the part would need to be split.',
   },
   {
     q: 'How long does it take?',

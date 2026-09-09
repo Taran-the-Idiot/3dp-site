@@ -7,6 +7,7 @@ const year = new Date().getFullYear();
   <div class="shell">
     <div class="cols">
       <div>
+        <img class="logo" src="/logo.png" alt="" width="203" height="215" />
         <h4>{site.name}</h4>
         <p>{site.location}</p>
         <p>From ${pricing.fromPerKg} {pricing.currency}/kg + shipping</p>
@@ -28,7 +29,7 @@ const year = new Date().getFullYear();
           <li><a href="/services#multicolour">Multicolour printing</a></li>
           <li><a href="/services#materials">PLA, PETG & TPU</a></li>
           <li><a href="/services#modelling">3D modelling</a></li>
-          <li><a href="/services#finishing">Finishing & assembly</a></li>
+          <li><a href="/services#finishing">Finishing</a></li>
         </ul>
       </div>
 
@@ -49,14 +50,20 @@ const year = new Date().getFullYear();
   .site-footer {
     border-top: 1px solid var(--border);
     background: var(--bg-alt);
-    padding: 1.5rem 0 1rem;
+    padding: 2.5rem 0 1.75rem;
     font-size: 0.85rem;
   }
 
   .cols {
     display: grid;
     grid-template-columns: 1.4fr 1fr 1.2fr 1.4fr;
-    gap: 1.5rem;
+    gap: 2rem;
+  }
+
+  .logo {
+    width: auto;
+    height: 26px;
+    margin-bottom: 0.4rem;
   }
 
   h4 {
@@ -88,8 +95,8 @@ const year = new Date().getFullYear();
   }
 
   .copy {
-    margin-top: 1.25rem;
-    padding-top: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
     border-top: 1px solid var(--border);
     color: var(--text-dim);
   }

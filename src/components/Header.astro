@@ -13,7 +13,10 @@ const links = [
 
 <header class="site-header">
   <div class="shell bar">
-    <a class="brand" href="/">{site.name}</a>
+    <a class="brand" href="/">
+      <img src="/logo.png" alt="" width="203" height="215" />
+      <span>{site.name}</span>
+    </a>
 
     <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">Menu</button>
 
@@ -45,12 +48,23 @@ const links = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 48px;
+    gap: 1rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
   }
 
   .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-weight: 600;
+    font-size: 1.05rem;
     text-decoration: none;
+  }
+
+  .brand img {
+    width: auto;
+    height: 34px;
   }
 
   .nav ul {
@@ -104,8 +118,6 @@ const links = [
     }
     .bar {
       flex-wrap: wrap;
-      height: auto;
-      padding-top: 0.6rem;
     }
     .nav ul {
       flex-direction: column;

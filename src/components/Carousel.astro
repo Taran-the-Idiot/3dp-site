@@ -6,16 +6,23 @@ interface Props {
 }
 
 const { items } = Astro.props;
+
+// Repeat the set enough times that the widest view (4 slides) always has
+// real slides to move into, so the loop never runs out of images.
+const copies = Math.max(2, Math.ceil((items.length + 4) / items.length));
+const loop = Array.from({ length: copies }, (_, copy) =>
+  items.map((item) => ({ item, clone: copy > 0 }))
+).flat();
 ---
 
-<div class="carousel" data-carousel aria-label="Photos of prints we have made" role="region">
+<div class="carousel" data-carousel data-count={items.length} aria-label="Photos of prints we have made" role="region">
   <button class="arrow" data-prev aria-label="Previous">‹</button>
 
   <div class="window">
     <ul class="track" data-track>
-      {items.map((item) => (
-        <li class="slide">
-          <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
+      {loop.map(({ item, clone }) => (
+        <li class="slide" aria-hidden={clone ? 'true' : undefined}>
+          <img src={item.image} alt={clone ? '' : item.alt} loading="lazy" decoding="async" />
         </li>
       ))}
     </ul>
@@ -38,7 +45,6 @@ const { items } = Astro.props;
 
   .track {
     display: flex;
-    transition: transform 0.4s ease;
   }
 
   .slide {
@@ -86,8 +92,11 @@ const { items } = Astro.props;
 <script>
   document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
     const track = root.querySelector<HTMLElement>('[data-track]');
-    const slides = root.querySelectorAll('.slide');
-    if (!track || slides.length === 0) return;
+    if (!track) return;
+
+    // number of real (non-clone) slides — one full lap of the loop
+    const count = Number(root.dataset.count ?? 0);
+    if (count === 0) return;
 
     const perView = () => {
       if (window.innerWidth <= 600) return 2;
@@ -97,39 +106,55 @@ const { items } = Astro.props;
 
     let index = 0;
 
-    const show = () => {
-      const max = Math.max(0, slides.length - perView());
-      if (index > max) index = 0;
-      if (index < 0) index = max;
+    const position = (animate: boolean) => {
+      track.style.transition = animate ? 'transform 0.4s ease' : 'none';
       track.style.transform = `translateX(-${index * (100 / perView())}%)`;
     };
 
-    root.querySelector('[data-prev]')?.addEventListener('click', () => {
+    const next = () => {
+      // if a lap finished but has not been reset yet (rapid clicks), reset now
+      // so the index never runs past the cloned slides
+      if (index >= count) {
+        index -= count;
+        position(false);
+        void track.offsetWidth;
+      }
+      index++;
+      position(true);
+    };
+
+    const prev = () => {
+      // stepping back past the start: jump forward a full lap first, with no
+      // animation, so there is always a slide to move onto
+      if (index === 0) {
+        index = count;
+        position(false);
+        void track.offsetWidth; // force the jump to apply before animating
+      }
       index--;
-      show();
+      position(true);
+    };
+
+    // once a full lap has been animated, snap back by one lap. The slide on
+    // screen is identical, so the reset is invisible.
+    track.addEventListener('transitionend', () => {
+      if (index >= count) {
+        index -= count;
+        position(false);
+      }
     });
 
-    root.querySelector('[data-next]')?.addEventListener('click', () => {
-      index++;
-      show();
-    });
+    root.querySelector('[data-prev]')?.addEventListener('click', prev);
+    root.querySelector('[data-next]')?.addEventListener('click', next);
 
-    window.addEventListener('resize', show);
+    window.addEventListener('resize', () => position(false));
 
-    // auto-cycle, paused while the pointer is over the strip
-    let timer = setInterval(() => {
-      index++;
-      show();
-    }, 3000);
-
+    let timer = setInterval(next, 3000);
     root.addEventListener('mouseenter', () => clearInterval(timer));
     root.addEventListener('mouseleave', () => {
-      timer = setInterval(() => {
-        index++;
-        show();
-      }, 3000);
+      timer = setInterval(next, 3000);
     });
 
-    show();
+    position(false);
   });
 </script>

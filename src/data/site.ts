@@ -25,14 +25,6 @@ export const pricing = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// Enquiry form delivery.
-//
-// Leave FORM_ENDPOINT as an empty string and the form falls back to opening
-// the visitor's email client with everything pre-filled (they attach the STL
-// themselves).
-//
-// To collect submissions properly, sign up for a form service such as
-// Formspree (https://formspree.io) or Web3Forms, and paste the POST URL here.
-// File uploads then come through as attachments automatically.
+// The enquiry form is a Fillout embed (id: aivaD3EtXjus) on src/pages/enquire.astro.
+// Submissions are collected in Fillout — edit the questions there, not here.
 // ---------------------------------------------------------------------------
-export const FORM_ENDPOINT = '';

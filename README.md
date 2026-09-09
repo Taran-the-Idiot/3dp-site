@@ -16,7 +16,7 @@ libraries, no build-time dependencies beyond Astro itself.
 
 | File          | What it controls                                                          |
 | ------------- | ------------------------------------------------------------------------- |
-| `site.ts`     | Business name, email, phone, location, pricing, **form endpoint**          |
+| `site.ts`     | Business name, email, phone, location, pricing                             |
 | `prints.ts`   | Your past prints — feeds both the carousel and the gallery                 |
 | `reviews.ts`  | Customer reviews and the **show/hide switch** for the reviews section      |
 | `services.ts` | Service descriptions, material specs, process steps, FAQ entries           |
@@ -54,20 +54,14 @@ export const showReviews = true;
 That's the only change needed — the section then appears on both the homepage and the gallery page.
 Replace the placeholder entries in the `reviews` array with real feedback first.
 
-### Making the enquiry form deliver somewhere
+### The enquiry form
 
-Out of the box the form validates, then opens the visitor's email client with every answer filled in
-(they attach their own STL files).
+The form on `/enquire` is a [Fillout](https://fillout.com) embed (form id `aivaD3EtXjus`), which
+collects submissions and file uploads straight into Fillout. To change the questions, edit the form in
+your Fillout account — nothing in this repo needs to change.
 
-To receive submissions **with file uploads** instead, sign up with a form service such as
-[Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com), then set the endpoint in
-`src/data/site.ts`:
-
-```ts
-export const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_ID';
-```
-
-The form switches to posting there automatically — no other changes needed.
+To swap in a different form, replace the `data-fillout-id` on the embed div in
+`src/pages/enquire.astro`.
 
 ## Development
 
