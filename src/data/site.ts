@@ -9,7 +9,7 @@ export const site = {
     'Multicolour 3D printing in PLA, PETG and TPU, plus custom 3D modelling. Based in Sydney, shipping Australia wide. From $30 AUD/kg + shipping.',
   location: 'Sydney, NSW, Australia',
   email: 'prints@taranium.dev',
-  phone: '+61 400 000 000',
+  phone: '+61 470 650 202',
   // Displayed on the enquire page. Set to null to hide a row.
   turnaround: '2–5 business days for most jobs',
   shipping: 'Australia Post & Sendle, Australia wide. Sydney metro pickup by arrangement.',
