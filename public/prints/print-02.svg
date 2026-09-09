@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <defs>
+    <pattern id="layers2" width="8" height="4" patternUnits="userSpaceOnUse">
+      <rect width="8" height="4" fill="none"/>
+      <line x1="0" y1="3.5" x2="8" y2="3.5" stroke="#000" stroke-width="1" opacity=".10"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="600" fill="#f2f3f6"/>
+
+  <!-- print bed -->
+  <path d="M60 430 L740 430 L800 520 L0 520 Z" fill="#e2e5ea"/>
+  <path d="M60 430 L740 430" stroke="#c3c8d0" stroke-width="2"/>
+
+  
+    <g>
+      <path d="M122.70975918169587 333.91884087301736 l197.4142814182743 0 l26 -15.6 l-197.4142814182743 0 Z" fill="#0f766e" fill-opacity=".72"/>
+      <path d="M320.12404059997016 333.91884087301736 l26 -15.6 l0 96.08115912698264 l-26 15.6 Z" fill="#0f766e" fill-opacity=".48"/>
+      <rect x="122.70975918169587" y="333.91884087301736" width="197.4142814182743" height="96.08115912698264" fill="#0f766e"/>
+      <rect x="122.70975918169587" y="333.91884087301736" width="197.4142814182743" height="96.08115912698264" fill="url(#layers2)"/>
+    </g>
+    <g>
+      <path d="M266.92075611414424 193.26073739363846 l93.74602675612365 0 l26 -15.6 l-93.74602675612365 0 Z" fill="#12907f" fill-opacity=".72"/>
+      <path d="M360.66678287026787 193.26073739363846 l26 -15.6 l0 236.73926260636154 l-26 15.6 Z" fill="#12907f" fill-opacity=".48"/>
+      <rect x="266.92075611414424" y="193.26073739363846" width="93.74602675612365" height="236.73926260636154" fill="#12907f"/>
+      <rect x="266.92075611414424" y="193.26073739363846" width="93.74602675612365" height="236.73926260636154" fill="url(#layers2)"/>
+    </g>
+    <g>
+      <path d="M399.02310730378287 193.06405178879575 l165.25836828875282 0 l26 -15.6 l-165.25836828875282 0 Z" fill="#0b5c56" fill-opacity=".72"/>
+      <path d="M564.2814755925357 193.06405178879575 l26 -15.6 l0 236.93594821120425 l-26 15.6 Z" fill="#0b5c56" fill-opacity=".48"/>
+      <rect x="399.02310730378287" y="193.06405178879575" width="165.25836828875282" height="236.93594821120425" fill="#0b5c56"/>
+      <rect x="399.02310730378287" y="193.06405178879575" width="165.25836828875282" height="236.93594821120425" fill="url(#layers2)"/>
+    </g>
+    <g>
+      <path d="M512.4441802559626 299.3681871608683 l150.40744188260635 0 l26 -15.6 l-150.40744188260635 0 Z" fill="#3fa79b" fill-opacity=".72"/>
+      <path d="M662.8516221385689 299.3681871608683 l26 -15.6 l0 130.63181283913173 l-26 15.6 Z" fill="#3fa79b" fill-opacity=".48"/>
+      <rect x="512.4441802559626" y="299.3681871608683" width="150.40744188260635" height="130.63181283913173" fill="#3fa79b"/>
+      <rect x="512.4441802559626" y="299.3681871608683" width="150.40744188260635" height="130.63181283913173" fill="url(#layers2)"/>
+    </g>
+
+  <text x="40" y="562" fill="#4a505c" font-family="system-ui, sans-serif" font-size="21" font-weight="600">TPU bumpers</text>
+  <text x="40" y="584" fill="#858b96" font-family="system-ui, sans-serif" font-size="14">Replace with your own photo</text>
+</svg>

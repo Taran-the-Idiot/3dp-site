@@ -1,0 +1,67 @@
+---
+// Renders nothing at all unless `showReviews` is true in src/data/reviews.ts.
+import { reviews, showReviews } from '../data/reviews';
+
+interface Props {
+  heading?: string;
+}
+
+const { heading = 'What customers say' } = Astro.props;
+---
+
+{
+  showReviews && reviews.length > 0 && (
+    <section class="alt" id="reviews">
+      <div class="shell">
+        <div class="section-head">
+          <span class="eyebrow">Reviews</span>
+          <h2>{heading}</h2>
+        </div>
+
+        <ul class="grid">
+          {reviews.map((r) => (
+            <li class="card">
+              <p class="stars" aria-label={`${r.rating} out of 5`}>
+                {'★'.repeat(r.rating)}
+                <span class="off">{'★'.repeat(5 - r.rating)}</span>
+              </p>
+              <p class="quote">{r.quote}</p>
+              <p class="who">
+                {r.name} — {r.location}
+                {r.job ? ` · ${r.job}` : ''}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .stars {
+    margin: 0 0 0.4rem;
+    color: var(--accent);
+    font-size: 0.9rem;
+  }
+  .off {
+    color: var(--border);
+  }
+
+  .quote {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .who {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+</style>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <defs>
+    <pattern id="layers7" width="8" height="4" patternUnits="userSpaceOnUse">
+      <rect width="8" height="4" fill="none"/>
+      <line x1="0" y1="3.5" x2="8" y2="3.5" stroke="#000" stroke-width="1" opacity=".10"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="600" fill="#f2f3f6"/>
+
+  <!-- print bed -->
+  <path d="M60 430 L740 430 L800 520 L0 520 Z" fill="#e2e5ea"/>
+  <path d="M60 430 L740 430" stroke="#c3c8d0" stroke-width="2"/>
+
+  
+    <g>
+      <path d="M135.53725839850364 260.09942884561576 l145.26725093613717 0 l26 -15.6 l-145.26725093613717 0 Z" fill="#3b7a4d" fill-opacity=".72"/>
+      <path d="M280.8045093346408 260.09942884561576 l26 -15.6 l0 169.90057115438424 l-26 15.6 Z" fill="#3b7a4d" fill-opacity=".48"/>
+      <rect x="135.53725839850364" y="260.09942884561576" width="145.26725093613717" height="169.90057115438424" fill="#3b7a4d"/>
+      <rect x="135.53725839850364" y="260.09942884561576" width="145.26725093613717" height="169.90057115438424" fill="url(#layers7)"/>
+    </g>
+    <g>
+      <path d="M283.68407686567747 199.99066703021091 l215.65274840484037 0 l26 -15.6 l-215.65274840484037 0 Z" fill="#5fa872" fill-opacity=".72"/>
+      <path d="M499.3368252705178 199.99066703021091 l26 -15.6 l0 230.00933296978909 l-26 15.6 Z" fill="#5fa872" fill-opacity=".48"/>
+      <rect x="283.68407686567747" y="199.99066703021091" width="215.65274840484037" height="230.00933296978909" fill="#5fa872"/>
+      <rect x="283.68407686567747" y="199.99066703021091" width="215.65274840484037" height="230.00933296978909" fill="url(#layers7)"/>
+    </g>
+    <g>
+      <path d="M463.20759098039673 271.7385088986431 l164.23409022122348 0 l26 -15.6 l-164.23409022122348 0 Z" fill="#2a5c39" fill-opacity=".72"/>
+      <path d="M627.4416812016202 271.7385088986431 l26 -15.6 l0 158.2614911013569 l-26 15.6 Z" fill="#2a5c39" fill-opacity=".48"/>
+      <rect x="463.20759098039673" y="271.7385088986431" width="164.23409022122348" height="158.2614911013569" fill="#2a5c39"/>
+      <rect x="463.20759098039673" y="271.7385088986431" width="164.23409022122348" height="158.2614911013569" fill="url(#layers7)"/>
+    </g>
+
+  <text x="40" y="562" fill="#4a505c" font-family="system-ui, sans-serif" font-size="21" font-weight="600">Planter series</text>
+  <text x="40" y="584" fill="#858b96" font-family="system-ui, sans-serif" font-size="14">Replace with your own photo</text>
+</svg>

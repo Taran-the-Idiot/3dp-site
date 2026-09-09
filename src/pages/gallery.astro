@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PrintCard from '../components/PrintCard.astro';
+import Reviews from '../components/Reviews.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { prints } from '../data/prints';
+
+const categories = ['All', ...new Set(prints.map((p) => p.category))];
+---
+
+<Layout
+  title="Past prints"
+  description="A gallery of 3D prints we have made for customers around Sydney — multicolour signage, functional PETG parts, flexible TPU components and custom models."
+>
+  <section class="head">
+    <div class="shell">
+      <span class="eyebrow">Past prints</span>
+      <h1>Work we have made for customers</h1>
+      <p class="lede">
+        Signage, replacement parts, prototypes and display pieces printed for customers around Sydney.
+      </p>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="shell">
+      <div class="filters" role="group" aria-label="Filter prints by category">
+        {categories.map((c, i) => (
+          <button class={`filter${i === 0 ? ' is-active' : ''}`} data-filter={c} aria-pressed={i === 0 ? 'true' : 'false'}>
+            {c}
+          </button>
+        ))}
+      </div>
+
+      <ul class="grid" data-grid>
+        {prints.map((p) => (
+          <PrintCard print={p} />
+        ))}
+      </ul>
+
+      <p class="empty" data-empty hidden>Nothing in that category yet — try another filter.</p>
+    </div>
+  </section>
+
+  <!--
+    Reviews section — hidden by default.
+    Turn it on by setting `showReviews = true` in src/data/reviews.ts
+  -->
+  <Reviews heading="What customers say about this work" />
+
+  <CallToAction
+    title="Want something like these?"
+    body="Send us your files, or just a description of what you are after, and we will quote it."
+  />
+</Layout>
+
+<style>
+  .head {
+    padding: 2rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .filter {
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .filter:hover {
+    background: var(--bg-alt);
+  }
+  .filter.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .empty {
+    padding: 1.5rem 0;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 800px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.filter')];
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-grid] > *')];
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  buttons.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'All';
+
+      buttons.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+
+      let visible = 0;
+      cards.forEach((card) => {
+        const show = filter === 'All' || card.dataset.category === filter;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+
+      if (empty) empty.hidden = visible > 0;
+    })
+  );
+</script>

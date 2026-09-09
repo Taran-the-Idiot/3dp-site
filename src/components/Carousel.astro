@@ -1,0 +1,135 @@
+---
+import type { Print } from '../data/prints';
+
+interface Props {
+  items: Print[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="carousel" data-carousel aria-label="Photos of prints we have made" role="region">
+  <button class="arrow" data-prev aria-label="Previous">‹</button>
+
+  <div class="window">
+    <ul class="track" data-track>
+      {items.map((item) => (
+        <li class="slide">
+          <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <button class="arrow" data-next aria-label="Next">›</button>
+</div>
+
+<style>
+  .carousel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .window {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .track {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+
+  .slide {
+    flex: 0 0 25%;
+    padding: 0 0.25rem;
+  }
+
+  .slide img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .arrow {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .arrow:hover {
+    background: var(--bg-alt);
+  }
+
+  @media (max-width: 900px) {
+    .slide {
+      flex-basis: 33.333%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .slide {
+      flex-basis: 50%;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('[data-track]');
+    const slides = root.querySelectorAll('.slide');
+    if (!track || slides.length === 0) return;
+
+    const perView = () => {
+      if (window.innerWidth <= 600) return 2;
+      if (window.innerWidth <= 900) return 3;
+      return 4;
+    };
+
+    let index = 0;
+
+    const show = () => {
+      const max = Math.max(0, slides.length - perView());
+      if (index > max) index = 0;
+      if (index < 0) index = max;
+      track.style.transform = `translateX(-${index * (100 / perView())}%)`;
+    };
+
+    root.querySelector('[data-prev]')?.addEventListener('click', () => {
+      index--;
+      show();
+    });
+
+    root.querySelector('[data-next]')?.addEventListener('click', () => {
+      index++;
+      show();
+    });
+
+    window.addEventListener('resize', show);
+
+    // auto-cycle, paused while the pointer is over the strip
+    let timer = setInterval(() => {
+      index++;
+      show();
+    }, 3000);
+
+    root.addEventListener('mouseenter', () => clearInterval(timer));
+    root.addEventListener('mouseleave', () => {
+      timer = setInterval(() => {
+        index++;
+        show();
+      }, 3000);
+    });
+
+    show();
+  });
+</script>

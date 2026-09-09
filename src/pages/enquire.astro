@@ -1,0 +1,700 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site, pricing, FORM_ENDPOINT } from '../data/site';
+import { materials } from '../data/services';
+
+const hasEndpoint = FORM_ENDPOINT.length > 0;
+---
+
+<Layout
+  title="Get a quote"
+  description="Request a 3D printing quote in Sydney. Send your STL files, choose a material and tell us the size — we will come back with an exact price."
+>
+  <section class="head">
+    <div class="shell">
+      <span class="eyebrow">Get a quote</span>
+      <h1>Tell us what you need printed</h1>
+      <p class="lede">
+        Send your STL files, the material and the rough size of the part. Quotes are free and usually take less
+        than one business day.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell layout">
+      <!-- Form -->
+      <form
+        class="quote-form"
+        data-form
+        method={hasEndpoint ? 'POST' : undefined}
+        action={hasEndpoint ? FORM_ENDPOINT : undefined}
+        enctype={hasEndpoint ? 'multipart/form-data' : undefined}
+        novalidate
+      >
+        <div class="fieldset">
+          <h2>Your details</h2>
+          <div class="row">
+            <label class="field">
+              <span>Name <em>*</em></span>
+              <input type="text" name="name" required autocomplete="name" />
+              <small class="err" data-err></small>
+            </label>
+            <label class="field">
+              <span>Email <em>*</em></span>
+              <input type="email" name="email" required autocomplete="email" />
+              <small class="err" data-err></small>
+            </label>
+          </div>
+          <div class="row">
+            <label class="field">
+              <span>Phone <small>(optional)</small></span>
+              <input type="tel" name="phone" autocomplete="tel" />
+            </label>
+            <label class="field">
+              <span>Suburb / delivery area <em>*</em></span>
+              <input type="text" name="area" required />
+              <small class="err" data-err></small>
+            </label>
+          </div>
+        </div>
+
+        <div class="fieldset">
+          <h2>What you need</h2>
+
+          <fieldset class="field">
+            <legend>Service <em>*</em></legend>
+            <div class="chips">
+              {['Printing only', 'Modelling + printing', '3D modelling only', 'Not sure yet'].map((s, i) => (
+                <label class="chip">
+                  <input type="radio" name="service" value={s} checked={i === 0} />
+                  <span>{s}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>Material <em>*</em></legend>
+            <div class="chips">
+              {materials.map((m) => (
+                <label class="chip">
+                  <input type="radio" name="material" value={m.name} />
+                  <span>{m.name}</span>
+                </label>
+              ))}
+              <label class="chip">
+                <input type="radio" name="material" value="Not sure — please advise" checked />
+                <span>Not sure</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>Colour</legend>
+            <div class="chips">
+              {['Single colour', 'Multicolour (up to 4)'].map((c, i) => (
+                <label class="chip">
+                  <input type="radio" name="colour" value={c} checked={i === 0} />
+                  <span>{c}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <div class="row">
+            <label class="field">
+              <span>Approximate size <em>*</em></span>
+              <input type="text" name="dimensions" required placeholder="e.g. 120 × 80 × 45 mm" />
+              <small class="hint">Length × width × height, or the area the part covers.</small>
+              <small class="err" data-err></small>
+            </label>
+            <label class="field">
+              <span>Quantity <em>*</em></span>
+              <input type="number" name="quantity" required min="1" value="1" />
+              <small class="err" data-err></small>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Needed by <small>(optional)</small></span>
+            <input type="date" name="deadline" />
+          </label>
+        </div>
+
+        <div class="fieldset">
+          <h2>Your files</h2>
+          <div class="field">
+            <div class="dropzone" data-dropzone>
+              <input
+                type="file"
+                name="files"
+                id="files"
+                multiple
+                accept=".stl,.3mf,.obj,.step,.stp,.zip,.png,.jpg,.jpeg,.pdf"
+                data-files
+              />
+              <label for="files">
+                <strong>Choose files or drop them here</strong>
+                <span>STL, 3MF, OBJ, STEP, ZIP — or a photo/sketch if you have no model yet</span>
+              </label>
+            </div>
+            <ul class="file-list" data-file-list></ul>
+          </div>
+
+          <label class="field">
+            <span>Details <em>*</em></span>
+            <textarea
+              name="message"
+              rows="4"
+              required
+              placeholder="What the part is for, how strong it needs to be, colour references, anything else worth knowing."
+            ></textarea>
+            <small class="err" data-err></small>
+          </label>
+        </div>
+
+        <!-- honeypot -->
+        <div class="hp" aria-hidden="true">
+          <label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <div class="submit-row">
+          <button class="btn btn-primary" type="submit" data-submit>
+            {hasEndpoint ? 'Send enquiry' : 'Compose enquiry email'}
+          </button>
+          <p class="fine">Your details are only used to quote your job.</p>
+        </div>
+
+        {
+          !hasEndpoint && (
+            <p class="fallback-note">
+              <strong>Heads up:</strong> this opens your email app with everything filled in — attach your STL
+              files there before sending. To collect submissions and uploads on the site instead, add a form
+              endpoint in <code>src/data/site.ts</code>.
+            </p>
+          )
+        }
+
+        <div class="form-status" data-status role="status" aria-live="polite" hidden></div>
+      </form>
+
+      <!-- Sidebar -->
+      <aside class="side">
+        <div class="card">
+          <h2>Or reach us directly</h2>
+          <ul class="contact-list">
+            <li><span class="lbl">Email:</span> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li><span class="lbl">Phone:</span> <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a></li>
+            <li><span class="lbl">Based in:</span> {site.location}</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Good to know</h3>
+          <dl>
+            <div>
+              <dt>Pricing</dt>
+              <dd>From ${pricing.fromPerKg} {pricing.currency}/kg + shipping.</dd>
+            </div>
+            <div>
+              <dt>Turnaround</dt>
+              <dd>{site.turnaround}</dd>
+            </div>
+            <div>
+              <dt>Shipping</dt>
+              <dd>{site.shipping}</dd>
+            </div>
+            <div>
+              <dt>File types</dt>
+              <dd>STL, 3MF, OBJ and STEP. No model? Send a sketch and we will draw it.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="card">
+          <h3>Speed up your quote</h3>
+          <ul class="tips">
+            <li>Include overall dimensions in millimetres.</li>
+            <li>Say what the part has to do — looks, strength or flex.</li>
+            <li>Mention colour references or a hex code.</li>
+            <li>Let us know your deadline.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .head {
+    padding: 2rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  /* form */
+  .fieldset {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .fieldset h2 {
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  .field {
+    display: block;
+    border: none;
+    padding: 0;
+    margin: 0 0 0.6rem;
+    min-width: 0;
+  }
+
+  .field > span,
+  legend {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    padding: 0;
+  }
+
+  .field em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .field small {
+    font-weight: 400;
+    color: var(--text-dim);
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='number'],
+  input[type='date'],
+  textarea {
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--accent);
+    outline: none;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .hint {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.75rem;
+  }
+
+  .err {
+    display: none;
+    margin-top: 0.15rem;
+    font-size: 0.75rem;
+    color: #b42318;
+  }
+  .err.show {
+    display: block;
+  }
+  .invalid input,
+  .invalid textarea {
+    border-color: #b42318;
+  }
+
+  /* chips */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .chip input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .chip span {
+    display: block;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+
+  .chip input:checked + span {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .chip input:focus-visible + span {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* files */
+  .dropzone {
+    position: relative;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    background: var(--bg-alt);
+  }
+  .dropzone.is-over {
+    border-color: var(--accent);
+  }
+
+  .dropzone input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .dropzone label {
+    display: block;
+    padding: 0.9rem;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  .dropzone strong {
+    display: block;
+    color: var(--text);
+    font-size: 0.85rem;
+  }
+
+  .file-list {
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+  }
+
+  .file-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .size {
+    color: var(--text-dim);
+  }
+
+  .hp {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .submit-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .fine {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .fallback-note {
+    margin: 0.6rem 0 0;
+    padding: 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-alt);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .fallback-note code {
+    background: #eceff3;
+    padding: 0 0.2rem;
+  }
+
+  .form-status {
+    margin-top: 0.6rem;
+    padding: 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+  .form-status.ok {
+    border-color: #a9cfb4;
+    color: #1c5b32;
+  }
+  .form-status.bad {
+    border-color: #e3b0ab;
+    color: #8f2018;
+  }
+
+  /* sidebar */
+  .side {
+    display: grid;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .side h2,
+  .side h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .side dt {
+    font-weight: 500;
+    margin-top: 0.4rem;
+  }
+
+  .side dd {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .side dl > div:first-child dt {
+    margin-top: 0;
+  }
+
+  .contact-list li {
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-list a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-word;
+  }
+
+  .lbl {
+    color: var(--text-dim);
+  }
+
+  .tips li {
+    padding-left: 1rem;
+    position: relative;
+    color: var(--text-muted);
+    margin-bottom: 0.15rem;
+  }
+  .tips li:before {
+    content: '–';
+    position: absolute;
+    left: 0;
+  }
+
+  @media (max-width: 800px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  import { site, FORM_ENDPOINT } from '../data/site';
+
+  const form = document.querySelector<HTMLFormElement>('[data-form]');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('[data-status]');
+    const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]');
+    const fileInput = form.querySelector<HTMLInputElement>('[data-files]');
+    const dropzone = form.querySelector<HTMLElement>('[data-dropzone]');
+    const fileList = form.querySelector<HTMLElement>('[data-file-list]');
+
+    const formatSize = (bytes: number) => {
+      if (bytes < 1024) return `${bytes} B`;
+      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+      return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+    };
+
+    const renderFiles = () => {
+      if (!fileList || !fileInput) return;
+      fileList.innerHTML = '';
+      [...(fileInput.files ?? [])].forEach((f) => {
+        const li = document.createElement('li');
+        const name = document.createElement('span');
+        name.textContent = f.name;
+        const size = document.createElement('span');
+        size.className = 'size';
+        size.textContent = formatSize(f.size);
+        li.append(name, size);
+        fileList.append(li);
+      });
+    };
+
+    fileInput?.addEventListener('change', renderFiles);
+
+    if (dropzone && fileInput) {
+      ['dragenter', 'dragover'].forEach((ev) =>
+        dropzone.addEventListener(ev, (e) => {
+          e.preventDefault();
+          dropzone.classList.add('is-over');
+        })
+      );
+      ['dragleave', 'drop'].forEach((ev) =>
+        dropzone.addEventListener(ev, (e) => {
+          e.preventDefault();
+          dropzone.classList.remove('is-over');
+        })
+      );
+      dropzone.addEventListener('drop', (e) => {
+        const dropped = (e as DragEvent).dataTransfer?.files;
+        if (dropped?.length) {
+          fileInput.files = dropped;
+          renderFiles();
+        }
+      });
+    }
+
+    const setError = (field: HTMLElement | null, message: string) => {
+      if (!field) return;
+      const slot = field.querySelector<HTMLElement>('[data-err]');
+      field.classList.toggle('invalid', Boolean(message));
+      if (slot) {
+        slot.textContent = message;
+        slot.classList.toggle('show', Boolean(message));
+      }
+    };
+
+    const validate = () => {
+      let firstBad: HTMLElement | null = null;
+
+      form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]').forEach((input) => {
+        const field = input.closest<HTMLElement>('.field');
+        let message = '';
+
+        if (!input.value.trim()) {
+          message = 'This field is required.';
+        } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+          message = 'Enter a valid email address.';
+        } else if (input.type === 'number' && Number(input.value) < 1) {
+          message = 'Enter a quantity of 1 or more.';
+        }
+
+        setError(field, message);
+        if (message && !firstBad) firstBad = field;
+      });
+
+      if (firstBad) {
+        (firstBad as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstBad.querySelector<HTMLElement>('input, textarea')?.focus({ preventScroll: true });
+        return false;
+      }
+      return true;
+    };
+
+    form.querySelectorAll<HTMLElement>('input, textarea').forEach((el) =>
+      el.addEventListener('input', () => setError(el.closest<HTMLElement>('.field'), ''))
+    );
+
+    const showStatus = (message: string, ok: boolean) => {
+      if (!status) return;
+      status.textContent = message;
+      status.className = `form-status ${ok ? 'ok' : 'bad'}`;
+      status.hidden = false;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if ((form.querySelector<HTMLInputElement>('[name="_gotcha"]')?.value ?? '') !== '') return;
+      if (!validate()) return;
+
+      const data = new FormData(form);
+      const val = (k: string) => String(data.get(k) ?? '').trim();
+
+      if (!FORM_ENDPOINT) {
+        const lines = [
+          `Name: ${val('name')}`,
+          `Email: ${val('email')}`,
+          `Phone: ${val('phone') || '—'}`,
+          `Suburb / delivery area: ${val('area')}`,
+          '',
+          `Service: ${val('service')}`,
+          `Material: ${val('material')}`,
+          `Colour: ${val('colour')}`,
+          `Approximate size: ${val('dimensions')}`,
+          `Quantity: ${val('quantity')}`,
+          `Needed by: ${val('deadline') || 'No fixed deadline'}`,
+          '',
+          'Details:',
+          val('message'),
+          '',
+          `Files to attach: ${
+            [...(fileInput?.files ?? [])].map((f) => f.name).join(', ') || '(none selected — please attach your STL files)'
+          }`,
+        ];
+
+        const href =
+          `mailto:${site.email}` +
+          `?subject=${encodeURIComponent(`Quote request — ${val('name')}`)}` +
+          `&body=${encodeURIComponent(lines.join('\n'))}`;
+
+        window.location.href = href;
+        showStatus(
+          'Your email app should now be open with the enquiry filled in. Remember to attach your STL files before sending.',
+          true
+        );
+        return;
+      }
+
+      submitBtn?.setAttribute('disabled', 'true');
+      const original = submitBtn?.textContent ?? '';
+      if (submitBtn) submitBtn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        renderFiles();
+        showStatus('Thanks — your enquiry is in. We will get back to you with a quote within one business day.', true);
+      } catch {
+        showStatus(
+          `Something went wrong sending that. Please email us directly at ${site.email} and we will pick it up from there.`,
+          false
+        );
+      } finally {
+        submitBtn?.removeAttribute('disabled');
+        if (submitBtn) submitBtn.textContent = original;
+      }
+    });
+  }
+</script>

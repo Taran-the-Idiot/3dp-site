@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <defs>
+    <pattern id="layers4" width="8" height="4" patternUnits="userSpaceOnUse">
+      <rect width="8" height="4" fill="none"/>
+      <line x1="0" y1="3.5" x2="8" y2="3.5" stroke="#000" stroke-width="1" opacity=".10"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="600" fill="#f2f3f6"/>
+
+  <!-- print bed -->
+  <path d="M60 430 L740 430 L800 520 L0 520 Z" fill="#e2e5ea"/>
+  <path d="M60 430 L740 430" stroke="#c3c8d0" stroke-width="2"/>
+
+  
+    <g>
+      <path d="M136.90062524140842 288.06960102546475 l206.55547773305113 0 l26 -15.6 l-206.55547773305113 0 Z" fill="#5a6b8f" fill-opacity=".72"/>
+      <path d="M343.45610297445955 288.06960102546475 l26 -15.6 l0 141.93039897453525 l-26 15.6 Z" fill="#5a6b8f" fill-opacity=".48"/>
+      <rect x="136.90062524140842" y="288.06960102546475" width="206.55547773305113" height="141.93039897453525" fill="#5a6b8f"/>
+      <rect x="136.90062524140842" y="288.06960102546475" width="206.55547773305113" height="141.93039897453525" fill="url(#layers4)"/>
+    </g>
+    <g>
+      <path d="M297.7447359827711 331.4284992084971 l190.51445965679105 0 l26 -15.6 l-190.51445965679105 0 Z" fill="#7d8dae" fill-opacity=".72"/>
+      <path d="M488.2591956395621 331.4284992084971 l26 -15.6 l0 98.57150079150288 l-26 15.6 Z" fill="#7d8dae" fill-opacity=".48"/>
+      <rect x="297.7447359827711" y="331.4284992084971" width="190.51445965679105" height="98.57150079150288" fill="#7d8dae"/>
+      <rect x="297.7447359827711" y="331.4284992084971" width="190.51445965679105" height="98.57150079150288" fill="url(#layers4)"/>
+    </g>
+    <g>
+      <path d="M468.2708443258598 338.4390771288607 l180.41295651831336 0 l26 -15.6 l-180.41295651831336 0 Z" fill="#41506d" fill-opacity=".72"/>
+      <path d="M648.6838008441732 338.4390771288607 l26 -15.6 l0 91.56092287113933 l-26 15.6 Z" fill="#41506d" fill-opacity=".48"/>
+      <rect x="468.2708443258598" y="338.4390771288607" width="180.41295651831336" height="91.56092287113933" fill="#41506d"/>
+      <rect x="468.2708443258598" y="338.4390771288607" width="180.41295651831336" height="91.56092287113933" fill="url(#layers4)"/>
+    </g>
+
+  <text x="40" y="562" fill="#4a505c" font-family="system-ui, sans-serif" font-size="21" font-weight="600">Pump bracket</text>
+  <text x="40" y="584" fill="#858b96" font-family="system-ui, sans-serif" font-size="14">Replace with your own photo</text>
+</svg>

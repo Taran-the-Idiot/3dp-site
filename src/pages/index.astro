@@ -1,11 +1,167 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Carousel from '../components/Carousel.astro';
+import Reviews from '../components/Reviews.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { featuredPrints } from '../data/prints';
+import { services, materials, processSteps } from '../data/services';
+import { site, pricing } from '../data/site';
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Hero -->
+  <section class="hero">
+    <div class="shell">
+      <span class="eyebrow">{site.location}</span>
+      <h1>3D printing that actually fits the job.</h1>
+      <p class="lede">
+        Multicolour printing, PLA, PETG and TPU, plus custom 3D modelling — made in Sydney and shipped Australia
+        wide. From <strong>${pricing.fromPerKg} {pricing.currency}/kg</strong> + shipping.
+      </p>
+      <p class="actions">
+        <a class="btn btn-primary" href="/enquire">Request a quote</a>
+        <a class="btn btn-ghost" href="/gallery">See past prints</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Carousel -->
+  <section class="alt">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Recent work</h2>
+      </div>
+      <Carousel items={featuredPrints} />
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section>
+    <div class="shell">
+      <div class="section-head">
+        <h2>What we do</h2>
+      </div>
+      <ul class="services">
+        {services.map((s) => (
+          <li class="card">
+            <h3>{s.title}</h3>
+            <p>{s.summary}</p>
+            <a href={`/services#${s.id}`}>Details</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Materials -->
+  <section class="alt">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Materials</h2>
+      </div>
+      <ul class="materials">
+        {materials.map((m) => (
+          <li class="card">
+            <h3>{m.name}</h3>
+            <p>{m.blurb}</p>
+            <p class="best">Best for: {m.bestFor.slice(0, 3).join(', ')}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section>
+    <div class="shell">
+      <div class="section-head">
+        <h2>How it works</h2>
+      </div>
+      <ol class="steps">
+        {processSteps.map((s, i) => (
+          <li>
+            <h3>{i + 1}. {s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!--
+    Reviews section — hidden by default.
+    Turn it on by setting `showReviews = true` in src/data/reviews.ts
+  -->
+  <Reviews />
+
+  <CallToAction />
 </Layout>
+
+<style>
+  .hero {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+  }
+
+  .services,
+  .materials,
+  .steps {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .services {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .materials {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .services p,
+  .materials p,
+  .steps p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .services a {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+
+  .materials .best {
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 800px) {
+    .services,
+    .materials,
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .services,
+    .materials,
+    .steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

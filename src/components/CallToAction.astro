@@ -1,0 +1,51 @@
+---
+import { pricing } from '../data/site';
+
+interface Props {
+  title?: string;
+  body?: string;
+}
+
+const {
+  title = 'Got a file? Get a price.',
+  body = 'Send your STL, the material you want and the rough size of the part. Quotes are free and usually take less than one business day.',
+} = Astro.props;
+---
+
+<section class="cta">
+  <div class="shell inner">
+    <div>
+      <h2>{title}</h2>
+      <p>{body}</p>
+    </div>
+    <div class="actions">
+      <a class="btn btn-primary" href="/enquire">Request a quote</a>
+      <a class="btn btn-ghost" href="/services">Services</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .inner > div {
+    max-width: 52ch;
+  }
+
+  .inner p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+</style>

@@ -1,0 +1,284 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { services, materials, processSteps, faqs } from '../data/services';
+import { pricing } from '../data/site';
+---
+
+<Layout
+  title="Services"
+  description="Multicolour 3D printing, PLA, PETG and TPU printing, custom 3D modelling and finishing services in Sydney. From $30 AUD/kg + shipping."
+>
+  <section class="head">
+    <div class="shell">
+      <span class="eyebrow">Services</span>
+      <h1>What we can make for you</h1>
+      <p class="lede">
+        Printing, modelling and finishing in Sydney. Every job is quoted individually — from
+        <strong>${pricing.fromPerKg} {pricing.currency}/kg</strong> of filament plus shipping.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section>
+    <div class="shell">
+      <div class="services">
+        {services.map((s) => (
+          <article class="service" id={s.id}>
+            <h2>{s.title}</h2>
+            <p>{s.detail}</p>
+            <ul class="points">
+              {s.points.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Materials -->
+  <section class="alt">
+    <div class="shell">
+      <div class="section-head">
+        <h2>PLA, PETG or TPU?</h2>
+        <p class="lede">PLA for looks, PETG for jobs, TPU for anything that has to bend.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="materials">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Strengths</th>
+            <th>Best for</th>
+            <th>Worth knowing</th>
+          </tr>
+        </thead>
+        <tbody>
+          {materials.map((m) => (
+            <tr id={m.id}>
+              <th scope="row">
+                {m.name}
+                <span class="sub">{m.short}</span>
+              </th>
+              <td>{m.strengths.join(', ')}</td>
+              <td>{m.bestFor.join(', ')}</td>
+              <td>{m.notes}</td>
+            </tr>
+          ))}
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Pricing</h2>
+        <p class="lede">
+          From <strong>${pricing.fromPerKg} {pricing.currency}/kg</strong> + shipping, charged on filament used.
+          Most desk-sized prints use well under 100 g. No minimum order.
+        </p>
+      </div>
+
+      <div class="two">
+        <div class="card">
+          <h3>What changes the price</h3>
+          <ul class="points">
+            <li>Material used — filament weight in the part and its supports</li>
+            <li>Print time — layer height, size and detail</li>
+            <li>Colours — multicolour uses more filament and takes longer</li>
+            <li>Modelling — quoted separately if we draw the part</li>
+            <li>Finishing — sanding, inserts and assembly, if you want them</li>
+            <li>Quantity — per-unit price drops on bigger runs</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Always included</h3>
+          <ul class="points">
+            <li>A free check of your STL before you commit</li>
+            <li>Support removal and inspection on every print</li>
+            <li>Material and colour advice with your quote</li>
+            <li>Protective packing for the trip</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="alt">
+    <div class="shell">
+      <div class="section-head">
+        <h2>The process</h2>
+      </div>
+      <ol class="steps">
+        {processSteps.map((s, i) => (
+          <li>
+            <h3>{i + 1}. {s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    title="Not sure which service you need?"
+    body="Describe the part and what it has to do. We will tell you the material, the approach and the price."
+  />
+</Layout>
+
+<style>
+  .head {
+    padding: 2rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .service {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem;
+    scroll-margin-top: 1rem;
+  }
+
+  .service p {
+    color: var(--text-muted);
+    max-width: 70ch;
+  }
+
+  .points li {
+    padding-left: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    position: relative;
+    margin-bottom: 0.15rem;
+  }
+  .points li:before {
+    content: '–';
+    position: absolute;
+    left: 0;
+  }
+
+  /* materials table */
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  .materials {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  .materials th,
+  .materials td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .materials thead th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+  }
+
+  .materials tbody th {
+    width: 110px;
+    color: var(--accent);
+  }
+
+  .materials td {
+    color: var(--text-muted);
+  }
+
+  .sub {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--text-dim);
+  }
+
+  /* pricing */
+  .two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .steps p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* faq */
+  .faq {
+    max-width: 70ch;
+  }
+
+  details {
+    border-bottom: 1px solid var(--border);
+  }
+
+  summary {
+    padding: 0.6rem 0;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  details p {
+    margin: 0 0 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 800px) {
+    .services,
+    .two,
+    .steps {
+      grid-template-columns: 1fr;
+    }
+    .materials {
+      min-width: 560px;
+    }
+  }
+</style>

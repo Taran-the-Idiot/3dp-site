@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <defs>
+    <pattern id="layers9" width="8" height="4" patternUnits="userSpaceOnUse">
+      <rect width="8" height="4" fill="none"/>
+      <line x1="0" y1="3.5" x2="8" y2="3.5" stroke="#000" stroke-width="1" opacity=".10"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="600" fill="#f2f3f6"/>
+
+  <!-- print bed -->
+  <path d="M60 430 L740 430 L800 520 L0 520 Z" fill="#e2e5ea"/>
+  <path d="M60 430 L740 430" stroke="#c3c8d0" stroke-width="2"/>
+
+  
+    <g>
+      <path d="M137.2805592544752 319.28312895786166 l154.4084394278044 0 l26 -15.6 l-154.4084394278044 0 Z" fill="#5b4bc4" fill-opacity=".72"/>
+      <path d="M291.6889986822796 319.28312895786166 l26 -15.6 l0 110.71687104213837 l-26 15.6 Z" fill="#5b4bc4" fill-opacity=".48"/>
+      <rect x="137.2805592544752" y="319.28312895786166" width="154.4084394278044" height="110.71687104213837" fill="#5b4bc4"/>
+      <rect x="137.2805592544752" y="319.28312895786166" width="154.4084394278044" height="110.71687104213837" fill="url(#layers9)"/>
+    </g>
+    <g>
+      <path d="M245.16920686008837 284.7010317094163 l117.10440160106141 0 l26 -15.6 l-117.10440160106141 0 Z" fill="#7b6dd6" fill-opacity=".72"/>
+      <path d="M362.27360846114976 284.7010317094163 l26 -15.6 l0 145.29896829058367 l-26 15.6 Z" fill="#7b6dd6" fill-opacity=".48"/>
+      <rect x="245.16920686008837" y="284.7010317094163" width="117.10440160106141" height="145.29896829058367" fill="#7b6dd6"/>
+      <rect x="245.16920686008837" y="284.7010317094163" width="117.10440160106141" height="145.29896829058367" fill="url(#layers9)"/>
+    </g>
+    <g>
+      <path d="M394.93244887559325 221.14004367084243 l200.05002116321123 0 l26 -15.6 l-200.05002116321123 0 Z" fill="#43349c" fill-opacity=".72"/>
+      <path d="M594.9824700388044 221.14004367084243 l26 -15.6 l0 208.85995632915757 l-26 15.6 Z" fill="#43349c" fill-opacity=".48"/>
+      <rect x="394.93244887559325" y="221.14004367084243" width="200.05002116321123" height="208.85995632915757" fill="#43349c"/>
+      <rect x="394.93244887559325" y="221.14004367084243" width="200.05002116321123" height="208.85995632915757" fill="url(#layers9)"/>
+    </g>
+    <g>
+      <path d="M519.617653498248 317.85000471298116 l122.94256927116894 0 l26 -15.6 l-122.94256927116894 0 Z" fill="#9c92e3" fill-opacity=".72"/>
+      <path d="M642.560222769417 317.85000471298116 l26 -15.6 l0 112.14999528701883 l-26 15.6 Z" fill="#9c92e3" fill-opacity=".48"/>
+      <rect x="519.617653498248" y="317.85000471298116" width="122.94256927116894" height="112.14999528701883" fill="#9c92e3"/>
+      <rect x="519.617653498248" y="317.85000471298116" width="122.94256927116894" height="112.14999528701883" fill="url(#layers9)"/>
+    </g>
+
+  <text x="40" y="562" fill="#4a505c" font-family="system-ui, sans-serif" font-size="21" font-weight="600">Helmet shell</text>
+  <text x="40" y="584" fill="#858b96" font-family="system-ui, sans-serif" font-size="14">Replace with your own photo</text>
+</svg>

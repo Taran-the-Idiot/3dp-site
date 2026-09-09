@@ -1,0 +1,55 @@
+---
+import type { Print } from '../data/prints';
+
+interface Props {
+  print: Print;
+}
+const { print } = Astro.props;
+---
+
+<li class="print-card" data-category={print.category}>
+  <img src={print.image} alt={print.alt} loading="lazy" decoding="async" />
+  <div class="body">
+    <h3>{print.title}</h3>
+    <p class="meta">{print.category} · {print.material}</p>
+    <p class="blurb">{print.blurb}</p>
+  </div>
+</li>
+
+<style>
+  .print-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .print-card[hidden] {
+    display: none;
+  }
+
+  .print-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .body {
+    padding: 0.7rem 0.8rem;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  .meta {
+    margin: 0.1rem 0 0.3rem;
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+
+  .blurb {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+</style>

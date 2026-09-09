@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <defs>
+    <pattern id="layers8" width="8" height="4" patternUnits="userSpaceOnUse">
+      <rect width="8" height="4" fill="none"/>
+      <line x1="0" y1="3.5" x2="8" y2="3.5" stroke="#000" stroke-width="1" opacity=".10"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="600" fill="#f2f3f6"/>
+
+  <!-- print bed -->
+  <path d="M60 430 L740 430 L800 520 L0 520 Z" fill="#e2e5ea"/>
+  <path d="M60 430 L740 430" stroke="#c3c8d0" stroke-width="2"/>
+
+  
+    <g>
+      <path d="M115.4920911814515 236.50288099260203 l224.83783907016638 0 l26 -15.6 l-224.83783907016638 0 Z" fill="#8f4570" fill-opacity=".72"/>
+      <path d="M340.3299302516179 236.50288099260203 l26 -15.6 l0 193.49711900739797 l-26 15.6 Z" fill="#8f4570" fill-opacity=".48"/>
+      <rect x="115.4920911814515" y="236.50288099260203" width="224.83783907016638" height="193.49711900739797" fill="#8f4570"/>
+      <rect x="115.4920911814515" y="236.50288099260203" width="224.83783907016638" height="193.49711900739797" fill="url(#layers8)"/>
+    </g>
+    <g>
+      <path d="M304.8438315690389 335.8488500005793 l154.19885608563146 0 l26 -15.6 l-154.19885608563146 0 Z" fill="#b0648f" fill-opacity=".72"/>
+      <path d="M459.0426876546704 335.8488500005793 l26 -15.6 l0 94.1511499994207 l-26 15.6 Z" fill="#b0648f" fill-opacity=".48"/>
+      <rect x="304.8438315690389" y="335.8488500005793" width="154.19885608563146" height="94.1511499994207" fill="#b0648f"/>
+      <rect x="304.8438315690389" y="335.8488500005793" width="154.19885608563146" height="94.1511499994207" fill="url(#layers8)"/>
+    </g>
+    <g>
+      <path d="M469.49498574536375 304.8372673731471 l137.96680214254502 0 l26 -15.6 l-137.96680214254502 0 Z" fill="#6d3055" fill-opacity=".72"/>
+      <path d="M607.4617878879087 304.8372673731471 l26 -15.6 l0 125.16273262685291 l-26 15.6 Z" fill="#6d3055" fill-opacity=".48"/>
+      <rect x="469.49498574536375" y="304.8372673731471" width="137.96680214254502" height="125.16273262685291" fill="#6d3055"/>
+      <rect x="469.49498574536375" y="304.8372673731471" width="137.96680214254502" height="125.16273262685291" fill="url(#layers8)"/>
+    </g>
+
+  <text x="40" y="562" fill="#4a505c" font-family="system-ui, sans-serif" font-size="21" font-weight="600">Gasket run</text>
+  <text x="40" y="584" fill="#858b96" font-family="system-ui, sans-serif" font-size="14">Replace with your own photo</text>
+</svg>
