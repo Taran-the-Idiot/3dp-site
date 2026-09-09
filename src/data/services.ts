@@ -57,31 +57,31 @@ export interface Service {
 export const services: Service[] = [
   {
     id: 'multicolour',
-    title: 'Multicolour printing',
+    title: 'General Prototyping',
     summary:
-      'Up to four colours in a single part — logos, labels, inlays and models that come off the plate already finished.',
+      'Need a part printed? We got you covered. We can print in a range of colours and materials, all at the best prices on the market.',
     detail:
-      'Multi-material printing means colour is built into the geometry rather than painted on afterwards. Text stays crisp, colours never chip or peel, and there is no masking or post-processing to pay for. Send artwork or a model with separate bodies and we will map each one to a filament.',
+      'We can print your parts in a range of colours and materials, all at the best prices on the market. We are able to print in PLA, PETG and TPU, starting prices from $30 AUD per kilogram of filament plus shipping*',
     points: [
-      'Up to 4 colours per print',
-      'Colour-swap layers or true multi-body models',
-      'Colour matching from a hex code, Pantone reference or a photo',
-      'Ideal for logos, signage, name plates and tabletop miniatures',
+      '3 different materials: PLA, PETG and TPU',
+      'Wide range of colours available',
+      'Build volume up to 256 × 256 × 256 mm',
+      'Ideal for functional parts, display pieces and prototypes',
     ],
     icon: 'layers',
   },
   {
     id: 'materials',
-    title: 'PLA, PETG & TPU printing',
+    title: 'Multicolour & multi-material printing',
     summary:
-      'Three materials covering everything from display pieces to functional parts that need to flex or survive the weather.',
+      'Print a file with up to 4 different colours or materials in a single print. Great for parts that need to look good.',
     detail:
-      'Every job is sliced by hand rather than pushed through a preset. We choose layer height, wall count and infill around what the part actually has to do, so a display model is not paying for the walls a load-bearing bracket needs.',
+      'We can print a single part in up to 4 different colours or materials, all in one go. This is great for parts that need to be functional and look good at the same time. Prices start at $40 AUD per kilogram of filament plus shippinging*',
     points: [
-      'Layer heights from 0.12 mm (fine) to 0.28 mm (draft)',
-      'Infill and wall count tuned to the part, not a default preset',
-      'Build volume up to 256 × 256 × 256 mm — larger parts printed in sections',
-      'Multiple copies priced per unit, cheaper as quantities rise',
+      'Up to 4 different colours or materials in a single print',
+      'Wide range of colour combos available',
+      'Build volume up to 256 × 256 × 256 mm',
+      'Great for functional parts, display pieces and mass produced products',
     ],
     icon: 'spool',
   },
@@ -89,7 +89,7 @@ export const services: Service[] = [
     id: 'modelling',
     title: '3D modelling & design',
     summary:
-      'No STL? We will draw it. Sketches, photos, measurements or a broken original — we model it and print it.',
+      'No STL? We will work with you to design a product and print it for you.',
     detail:
       'Parametric CAD for functional parts and mesh modelling for organic shapes. You get a print-ready model, and on request the source file too, so the design is yours to reuse or modify later.',
     points: [
