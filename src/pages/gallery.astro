@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PrintCard from '../components/PrintCard.astro';
 import Reviews from '../components/Reviews.astro';
 import CallToAction from '../components/CallToAction.astro';
 import { prints } from '../data/prints';
@@ -32,9 +31,11 @@ const categories = ['All', ...new Set(prints.map((p) => p.category))];
         ))}
       </div>
 
-      <ul class="grid" data-grid>
+      <ul class="collage" data-grid>
         {prints.map((p) => (
-          <PrintCard print={p} />
+          <li data-category={p.category}>
+            <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
+          </li>
         ))}
       </ul>
 
@@ -86,10 +87,20 @@ const categories = ['All', ...new Set(prints.map((p) => p.category))];
     color: #fff;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+  .collage {
+    columns: 4;
+    column-gap: 0.5rem;
+  }
+
+  .collage li {
+    break-inside: avoid;
+    margin-bottom: 0.5rem;
+  }
+
+  .collage img {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 6px;
   }
 
   .empty {
@@ -97,15 +108,15 @@ const categories = ['All', ...new Set(prints.map((p) => p.category))];
     color: var(--text-dim);
   }
 
-  @media (max-width: 800px) {
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 900px) {
+    .collage {
+      columns: 3;
     }
   }
 
-  @media (max-width: 500px) {
-    .grid {
-      grid-template-columns: 1fr;
+  @media (max-width: 600px) {
+    .collage {
+      columns: 2;
     }
   }
 </style>
