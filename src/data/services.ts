@@ -91,12 +91,12 @@ export const services: Service[] = [
     summary:
       'No STL? We will work with you to design a product and print it for you.',
     detail:
-      'Parametric CAD for functional parts and mesh modelling for organic shapes. You get a print-ready model, and on request the source file too, so the design is yours to reuse or modify later.',
+      'We will work with you to design a product and print it for you. You get a print-ready model, and on request the source file too, so the design is yours to reuse or modify later.',
     points: [
-      'Design from a sketch, photo or hand measurements',
+      'We make any design from a sketch or description of what you need',
       'Reverse engineering of broken or discontinued parts',
-      'Repairing and print-preparing existing STL files',
-      'Free STL check on any file you send — we flag problems before you pay',
+      'Product design and prototyping for small businesses and makers',
+      'Prices on request, depending on complexity and turnaround time',
     ],
     icon: 'cube',
   },
