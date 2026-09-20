@@ -1,7 +1,7 @@
 # Harbourline 3D — Sydney 3D printing website
 
 A four-page marketing site built with [Astro](https://docs.astro.build). No frameworks, no CSS
-libraries, no build-time dependencies beyond Astro itself.
+libraries, no build-time dependencies beyond Astro itself. 
 
 ## Pages
 
