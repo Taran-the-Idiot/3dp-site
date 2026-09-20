@@ -1,0 +1,203 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const links = [
+  { href: '/', label: 'Home', blurb: 'The overview — what we print and how it works.' },
+  { href: '/services', label: 'Services', blurb: 'Multicolour printing, PLA, PETG, TPU and 3D modelling.' },
+  { href: '/gallery', label: 'Past prints', blurb: 'Work we have made for customers around Sydney.' },
+  { href: '/enquire', label: 'Get a quote', blurb: 'Send your files and we will price the job.' },
+];
+---
+
+<Layout
+  title="Page not found"
+  description="That page could not be found. Head back to the homepage, browse our services or request a 3D printing quote."
+>
+  <section class="hero">
+    <div class="shell inner">
+      <div class="copy">
+        <span class="eyebrow">Error 404</span>
+        <h1>This one failed to print</h1>
+        <p class="lede">
+          The page you were after does not exist — it may have moved, or the link might have a typo in it.
+          Everything else is still on the bed.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/">Back to home</a>
+          <a class="btn btn-ghost" href="/enquire">Request a quote</a>
+        </div>
+      </div>
+
+      <!-- A part that let go of the build plate partway up. -->
+      <div class="art" aria-hidden="true">
+        <div class="layers">
+          <span style="--w: 76%"></span>
+          <span style="--w: 82%"></span>
+          <span style="--w: 88%"></span>
+          <span style="--w: 84%"></span>
+          <span style="--w: 90%"></span>
+          <span class="skew" style="--w: 72%"></span>
+          <span class="skew wide" style="--w: 58%"></span>
+          <span class="skew wider" style="--w: 40%"></span>
+        </div>
+        <div class="plate"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Try one of these instead</h2>
+      </div>
+      <ul class="cards">
+        {links.map((l) => (
+          <li class="card">
+            <h3><a href={l.href}>{l.label}</a></h3>
+            <p>{l.blurb}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="help">
+        Followed a link from somewhere and landed here? Let us know at <a href={`mailto:${site.email}`}>{site.email}</a> and we will fix it.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .copy h1 {
+    font-size: 2.1rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  /* The failed print: layers that drift off the plate and warp up. */
+
+  .art {
+    justify-self: center;
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .layers {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .layers span {
+    display: block;
+    width: var(--w);
+    height: 11px;
+    border-radius: 2px;
+    background: var(--accent);
+    opacity: 0.85;
+  }
+
+  .layers .skew {
+    opacity: 0.55;
+    transform: translateX(6%) rotate(-3deg);
+  }
+  .layers .skew.wide {
+    opacity: 0.4;
+    transform: translateX(14%) rotate(-7deg);
+  }
+  .layers .skew.wider {
+    opacity: 0.25;
+    transform: translateX(24%) rotate(-12deg);
+  }
+
+  .plate {
+    height: 8px;
+    margin-top: 6px;
+    border-radius: 3px;
+    background: var(--border);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .cards h3 {
+    margin-bottom: 0.25rem;
+  }
+
+  .cards h3 a {
+    text-decoration: none;
+  }
+
+  /* Make the whole card clickable without nesting interactive elements. */
+  .cards li {
+    position: relative;
+  }
+  .cards h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .cards li:hover {
+    border-color: var(--accent);
+  }
+  .cards li:hover h3 a {
+    color: var(--accent);
+  }
+
+  .cards p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .help {
+    margin-top: 1.25rem;
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .help a {
+    color: var(--accent);
+  }
+
+  @media (max-width: 860px) {
+    .cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .hero {
+      padding: 2.5rem 0 2rem;
+    }
+    .inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .art {
+      order: -1;
+      max-width: 200px;
+      justify-self: start;
+    }
+  }
+</style>

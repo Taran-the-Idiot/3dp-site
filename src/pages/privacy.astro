@@ -1,0 +1,277 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const updated = new Date(site.privacyUpdated).toLocaleDateString('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+const tel = site.phone.replace(/\s/g, '');
+---
+
+<Layout
+  title="Privacy policy"
+  description={`How ${site.name} collects, uses, stores and discloses your personal information, in line with the Australian Privacy Principles.`}
+>
+  <section class="head">
+    <div class="shell">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy policy</h1>
+      <p class="lede">
+        This policy explains what personal information {site.name} collects when you request a quote or order a
+        print, why we collect it, who we share it with and how you can access or correct it.
+      </p>
+      <p class="meta">Last updated {updated}</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell prose">
+      <h2 id="who-we-are">1. Who we are</h2>
+      <p>
+        {site.legalName}{site.abn ? ` (ABN ${site.abn})` : ''} (“we”, “us”, “our”) is a 3D printing and 3D
+        modelling business based in {site.location}. We can be reached at
+        <a href={`mailto:${site.email}`}>{site.email}</a> or <a href={`tel:${tel}`}>{site.phone}</a>.
+      </p>
+      <p>
+        We are committed to protecting your privacy and handling your personal information in accordance with the
+        <em>Privacy Act 1988</em> (Cth) and the thirteen Australian Privacy Principles (APPs). As a small business
+        operator we may not currently be bound by the Privacy Act, but we have chosen to follow the APPs as a
+        matter of good practice. In this policy, “personal information” has the meaning given to it in the Privacy
+        Act.
+      </p>
+
+      <h2 id="what-we-collect">2. What personal information we collect</h2>
+      <p>We only collect information we reasonably need to quote on, produce and deliver your job. That usually means:</p>
+      <ul class="bullets">
+        <li><strong>Contact details</strong> — your name, email address, phone number and, where relevant, your business or organisation name.</li>
+        <li><strong>Delivery details</strong> — the postal address you want your prints sent to.</li>
+        <li><strong>Job details</strong> — the 3D files you send us (STL, 3MF, OBJ, STEP and similar), drawings, sketches, reference photos, dimensions, materials, colours, quantities, deadlines and any notes you include with your enquiry.</li>
+        <li><strong>Correspondence</strong> — emails, messages and call notes exchanged with you about a quote or order.</li>
+        <li><strong>Transaction records</strong> — what you ordered, what you were charged, and when it was paid. We do not collect or store your full credit card or bank details; payments are handled by our payment provider or by direct bank transfer.</li>
+        <li><strong>Technical information</strong> — limited information your browser sends when you visit this site, such as your IP address, browser type and the pages you viewed.</li>
+      </ul>
+      <p>
+        We do not seek sensitive information (such as health, biometric or government identifier information) and
+        ask that you do not send it to us. If you send us sensitive information anyway, we will treat it in
+        accordance with this policy and delete it once it is no longer needed.
+      </p>
+      <p>
+        You can deal with us anonymously or under a pseudonym when making a general enquiry. We cannot, however,
+        quote accurately, take payment or ship a physical order without your name, contact and delivery details.
+      </p>
+
+      <h2 id="how-we-collect">3. How we collect it</h2>
+      <p>We collect personal information directly from you when you:</p>
+      <ul class="bullets">
+        <li>submit the quote form on our enquire page;</li>
+        <li>email, phone or message us, including through social media;</li>
+        <li>place an order, pay an invoice or arrange delivery or pickup; or</li>
+        <li>send us files, models or reference material for a job.</li>
+      </ul>
+      <p>
+        We may also collect information from third parties where you have asked them to deal with us on your
+        behalf, or from a shipping carrier in relation to a delivery. If we ever receive personal information
+        about you that we did not ask for and do not need, we will destroy or de-identify it where the law allows.
+      </p>
+
+      <h2 id="why-we-collect">4. Why we collect and use it</h2>
+      <p>We use your personal information to:</p>
+      <ul class="bullets">
+        <li>prepare and send you a quote;</li>
+        <li>print, model, finish, package and deliver your job;</li>
+        <li>invoice you and process payment;</li>
+        <li>communicate with you about your enquiry, order or a warranty or reprint issue;</li>
+        <li>keep business and tax records required by Australian law;</li>
+        <li>improve our services, pricing and this website; and</li>
+        <li>meet our legal obligations.</li>
+      </ul>
+      <p>
+        We will not use or disclose your personal information for any other purpose unless you would reasonably
+        expect it, you have consented, or we are required or authorised by law to do so.
+      </p>
+
+      <h2 id="your-files">5. Your 3D files and designs</h2>
+      <p>
+        We treat the files and designs you send us as confidential and as your property. We use them only to quote
+        on and produce your job. We do not sell, licence, publish or reprint your models for anyone else, and we
+        do not share them with other customers.
+      </p>
+      <p>
+        We will not display photographs of your prints on this website, on social media or in any other marketing
+        without your permission. If you would prefer your job stayed private, tell us and we will note it on your
+        file.
+      </p>
+
+      <h2 id="disclosure">6. Who we share it with</h2>
+      <p>We disclose personal information only where it is necessary to run our business. That may include:</p>
+      <ul class="bullets">
+        <li><strong>Form and email providers</strong> — our quote form is hosted by Fillout, and enquiries reach us by email, so information you submit passes through and is stored on their systems.</li>
+        <li><strong>Shipping and delivery partners</strong> — Australia Post, Sendle and any courier we use, so that they can deliver your order.</li>
+        <li><strong>Payment and accounting providers</strong> — our payment processor, bank and accounting software, to take payment and keep records.</li>
+        <li><strong>Specialist contractors</strong> — occasionally we engage another printer or finisher to complete part of a job. They receive only what they need to do that work and are required to keep it confidential.</li>
+        <li><strong>Professional advisers and authorities</strong> — our accountant, insurer or lawyer, and any court, regulator or law enforcement body where we are required or authorised by law to disclose.</li>
+      </ul>
+      <p>We do not sell, rent or trade your personal information.</p>
+
+      <h2 id="overseas">7. Overseas disclosure</h2>
+      <p>
+        Some of the service providers we rely on — including our form provider and email and cloud storage
+        services — store data on servers outside Australia, most commonly in the United States. By sending us an
+        enquiry you consent to your information being stored and processed overseas by those providers.
+      </p>
+      <p>
+        We take reasonable steps to use reputable providers that protect personal information to a standard
+        comparable to the APPs. You should be aware that overseas recipients may not be subject to the Privacy
+        Act, and that you may not be able to seek redress under the Act in relation to them.
+      </p>
+
+      <h2 id="cookies">8. Cookies and website analytics</h2>
+      <p>
+        This website does not set advertising or tracking cookies of its own. Our embedded quote form may set
+        cookies that are necessary for the form to work, and our hosting provider keeps standard server logs
+        (including IP addresses) for security and troubleshooting.
+      </p>
+      <p>
+        You can block or delete cookies through your browser settings. Doing so may stop the quote form from
+        working properly.
+      </p>
+
+      <h2 id="marketing">9. Direct marketing</h2>
+      <p>
+        We may occasionally email past and current customers about our services. Every marketing message we send
+        will identify us and include an easy way to unsubscribe, as required by the <em>Spam Act 2003</em> (Cth).
+        You can also opt out at any time by emailing <a href={`mailto:${site.email}`}>{site.email}</a>. Opting out
+        will not affect messages we need to send you about a current quote or order.
+      </p>
+
+      <h2 id="security">10. Security and retention</h2>
+      <p>
+        We take reasonable steps to protect your personal information from misuse, interference, loss and
+        unauthorised access, modification or disclosure. Those steps include password-protected and access-limited
+        devices and accounts, reputable service providers, and limiting who can see customer files.
+      </p>
+      <p>
+        No method of transmission or storage is completely secure, and we cannot guarantee absolute security of
+        information sent to us over the internet.
+      </p>
+      <p>
+        We keep your information only as long as we need it. Financial and transaction records are kept for at
+        least seven years as required by Australian tax law. Quote files and 3D models are generally kept while
+        there is an active or reasonably expected job, so we can reprint or adjust a part for you, and are deleted
+        or de-identified on request or once they are no longer needed.
+      </p>
+
+      <h2 id="breaches">11. Data breaches</h2>
+      <p>
+        If we become aware of a data breach that is likely to result in serious harm to anyone whose information
+        we hold, we will assess it promptly and, where the Notifiable Data Breaches scheme applies, notify the
+        affected individuals and the Office of the Australian Information Commissioner (OAIC).
+      </p>
+
+      <h2 id="access">12. Accessing and correcting your information</h2>
+      <p>
+        You may ask us for a copy of the personal information we hold about you, or ask us to correct it if it is
+        inaccurate, out of date, incomplete, irrelevant or misleading. Email
+        <a href={`mailto:${site.email}`}>{site.email}</a> and we will respond within a reasonable time, normally
+        within 30 days.
+      </p>
+      <p>
+        We may need to verify your identity before releasing information. We do not charge for making a request,
+        though we may charge a reasonable fee for the time and cost of supplying a large amount of information. If
+        we refuse a request, we will tell you why in writing and explain how to complain.
+      </p>
+      <p>
+        You can also ask us to delete your information. We will do so unless we are required to keep it by law,
+        such as for tax records, or need it for a current job or an actual or potential dispute.
+      </p>
+
+      <h2 id="complaints">13. Complaints</h2>
+      <p>
+        If you think we have breached the Australian Privacy Principles or mishandled your personal information,
+        please contact us first at <a href={`mailto:${site.email}`}>{site.email}</a> with the details. We will
+        acknowledge your complaint, investigate it and respond in writing, normally within 30 days.
+      </p>
+      <p>
+        If you are not satisfied with our response, you can refer the matter to the Office of the Australian
+        Information Commissioner:
+      </p>
+      <ul class="bullets">
+        <li>Website: <a href="https://www.oaic.gov.au" rel="noopener">www.oaic.gov.au</a></li>
+        <li>Phone: 1300 363 992</li>
+        <li>Post: GPO Box 5288, Sydney NSW 2001</li>
+      </ul>
+
+      <h2 id="changes">14. Changes to this policy</h2>
+      <p>
+        We may update this policy from time to time to reflect changes in our practices or the law. The current
+        version will always be available on this page, with the date it took effect shown at the top. Significant
+        changes will be brought to your attention where practical.
+      </p>
+
+      <h2 id="contact">15. Contact us</h2>
+      <p>
+        For any question about this policy or your personal information, contact
+        {' '}{site.legalName}:
+      </p>
+      <ul class="bullets">
+        <li>Email: <a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li>Phone: <a href={`tel:${tel}`}>{site.phone}</a></li>
+        <li>Location: {site.location}</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.75rem;
+  }
+
+  .meta {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  .prose {
+    max-width: 68ch;
+  }
+
+  .prose h2 {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    scroll-margin-top: 1rem;
+  }
+
+  .prose h2:first-child {
+    margin-top: 0;
+  }
+
+  .prose p {
+    color: var(--text-muted);
+  }
+
+  .prose a {
+    color: var(--accent);
+    overflow-wrap: break-word;
+  }
+
+  .prose strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .bullets {
+    margin: 0 0 0.6rem;
+    padding-left: 1.1rem;
+    list-style: disc;
+    color: var(--text-muted);
+  }
+
+  .bullets li {
+    margin-bottom: 0.35rem;
+  }
+</style>

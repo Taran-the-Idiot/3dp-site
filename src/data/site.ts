@@ -10,6 +10,11 @@ export const site = {
   location: 'Sydney, NSW, Australia',
   email: 'prints@taranium.dev',
   phone: '+61 470 650 202',
+  // Legal entity details, used on the privacy policy. Set abn to null to hide it.
+  legalName: 'Taranium 3D',
+  abn: null as string | null,
+  // Date the current privacy policy took effect (YYYY-MM-DD).
+  privacyUpdated: '2026-09-20',
   // Displayed on the enquire page. Set to null to hide a row.
   turnaround: '2–5 business days for most jobs',
   shipping: 'Australia Post & Sendle, Australia wide. Sydney metro pickup by arrangement.',
